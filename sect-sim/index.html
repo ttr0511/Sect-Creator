@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Legacy of the Sect</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="main_content">
+  <h1>Legacy of the Sect</h1>
+  <button onclick="advanceTime()">Advance Time (1 year)</button>
+  <button onclick="toggleCultivators()" id="toggle-cultivators" class="toggle-cultivators_btn">Hide Cultivators</button>
+  <label for="sort-by">Sort by:</label>
+  <select id="sort-by" onchange="render()">
+    <option value="age">Age</option>
+    <option value="talent">Talent</option>
+    <option value="qi">Qi</option>
+    <option value="realm">Realm</option>
+    <option value="fullname">Name</option>
+  </select>
+
+  <label for="sort-order">Order:</label>
+  <select id="sort-order" onchange="render()">
+    <option value="asc">Ascending</option>
+    <option value="desc" selected>Descending</option>
+  </select>
+
+  <label for="display-count">Display:</label>
+  <select id="display-count" onchange="render()">
+    <option value="10">10</option>
+    <option value="20">20</option>
+    <option value="50">50</option>
+    <option value="100">100</option>
+    <option value="200">200</option>
+    <option value="all">All</option>
+  </select>
+
+  <div id="sect-info"></div>
+  <div id="cultivator-list"></div>
+  <br><br>
+  <div id="sect_database">
+    <div class="search-guide">
+      <h3>Search Guide</h3>
+      <p>Search by name or use these attributes:</p>
+      <ul>
+        <li><strong>age</strong><br>Example: 'age: 50' or 'age: >30'</li>
+        <li><strong>talent</strong><br>Example: 'talent: >1' or 'talent: 0.8'</li>
+        <li><strong>realm</strong><br>Example: 'realm: Foundation' or 'realm: Mana Baptism'</li>
+        <li><strong>gender</strong><br>Example: 'gender: Male' or 'gender: Female'</li>
+        <li><strong>qi</strong><br>Example: 'qi: >100' or 'qi: 50'</li>
+        <li><strong>lifespan</strong><br>Example: 'lifespan: >100'</li>
+      </ul>
+    </div>
+    <div class="search-container">
+      <input type="text" id="sect-search-input" placeholder="Search cultivators (e.g., realm: Foundation, talent: >1)">
+      <div id="sect-autocomplete-list" class="autocomplete-list"></div>
+    </div>
+    <div id="sect-database-content">
+      <h2>Cultivator Information</h2>
+      <div id="cultivator-info-placeholder"></div>
+    </div>
+  </div>
+
+  <div id="sect_management">
+    <h3>Sect Management</h3>
+    <button class="toggle-cultivators_btn" onclick="toggleSectRecruitmentMenu()" id="sect-recruitment-btn">Hide Sect Recruitment</button>
+    <div class="sect-management-content">
+      <div class="sect-stats">
+        <p><strong>Influence:</strong> <span id="sect-influence">2</span></p>
+        <p><strong>Reputation:</strong> <span id="sect-reputation">0</span></p>
+        <p><strong>Spirit Stones:</strong> <span id="sect-spirit-stones">0</span></p>
+      </div>
+      <div class="recruitment-section" id="recruitment-section">
+        <h4>Recruit New Disciple</h4>
+        <div class="recruitment-options">
+          <div class="recruitment-option">
+            <button onclick="recruitDisciple('Foundation')" class="recruit-btn">Recruit Foundation Disciple</button>
+            <p>Cost: 100 Spirit Stones</p>
+            <p>Chance of success: Based on sect influence</p>
+          </div>
+          <div class="recruitment-option">
+            <button onclick="recruitDisciple('Talented')" class="recruit-btn">Recruit Talented Disciple</button>
+            <p>Cost: 500 Spirit Stones</p>
+            <p>Chance of success: Based on sect reputation</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="log_area">
+  <h3>Log</h3>
+  <div class="message-filter">
+    <label>
+      <input type="checkbox" id="message-filter-1" checked>
+      Show Normal Messages
+    </label>
+    <label>
+      <input type="checkbox" id="message-filter-2" checked>
+      Show Important Messages
+    </label>
+    <label>
+      <input type="checkbox" id="message-filter-3" checked>
+      Show Critical Messages
+    </label>
+  </div>
+  <div id="log-content"></div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
